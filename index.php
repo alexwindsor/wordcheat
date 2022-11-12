@@ -41,23 +41,23 @@ include 'code.php';
                 <td></td>
 
                 <td>
-                    <input type="text" maxlength="1" class="text-xl w-10 p-2 border border-black rounded mr-5 uppercase" name="letters[<?= $i ?>][0]" value="<?= $letters[$i][0] ?>"<?= $readonly ?> required>
+                    <input type="text" maxlength="1" class="text-xl w-10 p-2 border border-black rounded mr-5 uppercase"<?= $i == $row ? ' id="box_1"' : '' ?> name="letters[<?= $i ?>][0]" value="<?= $letters[$i][0] ?>"<?= $readonly ?> required>
                 </td>
 
                 <td>
-                    <input type="text" maxlength="1" class="text-xl w-10 p-2 border border-black rounded mr-5 uppercase" name="letters[<?= $i ?>][1]" value="<?= $letters[$i][1] ?>"<?= $readonly ?> required>
+                    <input type="text" maxlength="1" class="text-xl w-10 p-2 border border-black rounded mr-5 uppercase"<?= $i == $row ? ' id="box_2"' : '' ?> name="letters[<?= $i ?>][1]" value="<?= $letters[$i][1] ?>"<?= $readonly ?> required>
                 </td>
 
                 <td>
-                    <input type="text" maxlength="1" class="text-xl w-10 p-2 border border-black rounded mr-5 uppercase" name="letters[<?= $i ?>][2]" value="<?= $letters[$i][2] ?>"<?= $readonly ?> required>
+                    <input type="text" maxlength="1" class="text-xl w-10 p-2 border border-black rounded mr-5 uppercase"<?= $i == $row ? ' id="box_3"' : '' ?> name="letters[<?= $i ?>][2]" value="<?= $letters[$i][2] ?>"<?= $readonly ?> required>
                 </td>
 
                 <td>
-                    <input type="text" maxlength="1" class="text-xl w-10 p-2 border border-black rounded mr-5 uppercase" name="letters[<?= $i ?>][3]" value="<?= $letters[$i][3] ?>"<?= $readonly ?> required>
+                    <input type="text" maxlength="1" class="text-xl w-10 p-2 border border-black rounded mr-5 uppercase"<?= $i == $row ? ' id="box_4"' : '' ?> name="letters[<?= $i ?>][3]" value="<?= $letters[$i][3] ?>"<?= $readonly ?> required>
                 </td>
 
                 <td>
-                    <input type="text" maxlength="1" class="text-xl w-10 p-2 border border-black rounded mr-5 uppercase" name="letters[<?= $i ?>][4]" value="<?= $letters[$i][4] ?>"<?= $readonly ?> required>
+                    <input type="text" maxlength="1" class="text-xl w-10 p-2 border border-black rounded mr-5 uppercase"<?= $i == $row ? ' id="box_5"' : '' ?> name="letters[<?= $i ?>][4]" value="<?= $letters[$i][4] ?>"<?= $readonly ?> required>
                 </td>
             </tr>
 
@@ -128,15 +128,49 @@ if ($row > 0)
 
     echo '<br><br>';
 
-    foreach ($possible_words as $word) echo $word . '<br>';
+    foreach ($possible_words as $word) {
+
+        echo '<span id="' . $word . '" class="found_word hover:underline">';
+        echo $word;
+        echo '</span><br>';
+
+    }
 
 }
-echo count($possible_words);
-echo '<br>';
-
-
 
 ?>
+
+<script language="JavaScript">
+
+    <?php
+        for ($i = 1; $i <= 5; $i++) {
+    ?>
+
+    $('#box_<?= $i ?>').keyup(function () {
+        $('#box_<?= $i + 1 ?>').focus();
+        $('#box_<?= $i + 1 ?>').select();
+    });
+
+    <?php
+        }
+    ?>
+
+    $('input[type="text"]').on('click', function () {
+        $(this).select();
+    });
+
+    $('.found_word').click(function () {
+
+        for (i = 0; i < 6; i++) {
+            j = i + 1;
+            $('#box_' + j).val(this.id.substr(i, 1));
+        }
+
+    });
+
+</script>
+
+
 
 
 </body>
