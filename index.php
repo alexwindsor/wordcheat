@@ -111,11 +111,30 @@ include 'code.php';
 </form>
 
 <?php
+if ($row > 0)
+{
+    if (count($possible_words) > 1)
+    {
+        echo count($possible_words) . ' possible words found :';
+    }
+    elseif (count($possible_words) === 1)
+    {
+        echo 'WORD FOUND: ';
+    }
+    elseif (count($possible_words) === 0)
+    {
+        echo 'No words found with the above combination, sorry...';
+    }
 
+    echo '<br><br>';
+
+    foreach ($possible_words as $word) echo $word . '<br>';
+
+}
 echo count($possible_words);
 echo '<br>';
 
-foreach ($possible_words as $word) echo $word . '<br>';
+
 
 ?>
 
