@@ -112,6 +112,9 @@ include 'code.php';
 
 <?php
 
+echo count($possible_words);
+echo '<br>';
+
 foreach ($possible_words as $word) echo $word . '<br>';
 
 ?>
