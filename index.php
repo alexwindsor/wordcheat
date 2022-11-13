@@ -1,6 +1,5 @@
 <?php
 include 'code.php';
-
 ?>
 
 
@@ -18,15 +17,13 @@ include 'code.php';
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 </head>
 
-<body class="m-5">
+<body class="m-2 sm:m-4">
 
 <form method="post" autocomplete="off">
 
 <input type="hidden" name="row" value="<?= $row ?>">
 
-<h1 class="text-3xl">Wordle Cheat row:<?= $row ?> - <?= count($possible_words) ?? '' ?></h1>
-
-
+<h1 class="text-3xl">Wordle Cheat</h1>
 
 <div class="m-auto text-center">
 

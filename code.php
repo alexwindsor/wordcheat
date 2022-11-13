@@ -5,12 +5,13 @@ $letters = $places = [];
 
 for ($i = 0; $i < 6; $i++) {
     for ($j = 0; $j < 5; $j++) {
-        $letters[$i][$j] = $_POST['letters'][$i][$j] ?? null;
+        $letters[$i][$j] = strtolower($_POST['letters'][$i][$j] ?? null);
         $places[$i][$j] = $_POST['places'][$i][$j] ?? 0;
     }
 }
 
 $possible_words = [];
+
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') $row = 0;
 
@@ -39,7 +40,6 @@ elseif ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['row'])) {
             if ($exclude === true) $excluded_letters[] = $letters[$i][$j];
         }
     }
-
 
     $wordlist = fopen("5_letter_words.txt", "r");
 
@@ -83,6 +83,7 @@ elseif ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['row'])) {
                     break;
                 }
 
+
             }
 
         }
@@ -90,12 +91,9 @@ elseif ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['row'])) {
 
         if ($next_flag === false) $possible_words[] = $dict_word;
 
-
-
     }
 
     $row++;
 
 }
-
 
